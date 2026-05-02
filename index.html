@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Guide | Your Interactive Civic Tutor</title>
+    <meta name="description" content="Learn about the election process with Election Guide, your friendly interactive AI assistant for civic education.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Background elements for visual depth -->
+        <div class="bg-blur blur-1"></div>
+        <div class="bg-blur blur-2"></div>
+        
+        <header class="app-header">
+            <div class="logo">
+                <div class="mascot-container" id="mascot">
+                    <div class="mascot-eye left"></div>
+                    <div class="mascot-eye right"></div>
+                    <div class="mascot-mouth"></div>
+                </div>
+                <h1>Election Guide</h1>
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">🌓</button>
+                <button id="faq-btn" class="icon-btn" title="Quick FAQs">❓</button>
+                <button id="checklist-btn" class="icon-btn" title="My Checklist">📋</button>
+                <div class="progress-container">
+                    <div class="progress-text" id="progress-text">Ready to start</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- New: Checklist Drawer -->
+        <aside class="drawer" id="checklist-drawer">
+            <div class="drawer-header">
+                <h2>Voting Checklist</h2>
+                <button id="close-drawer" class="icon-btn">✕</button>
+            </div>
+            <div class="drawer-content">
+                <p class="drawer-hint">Prepare these for election day:</p>
+                <ul class="checklist" id="voting-checklist">
+                    <li><label><input type="checkbox"> EPIC (Voter ID Card)</label></li>
+                    <li><label><input type="checkbox"> Check Polling Station Location</label></li>
+                    <li><label><input type="checkbox"> Verified Name in Electoral Roll</label></li>
+                    <li><label><input type="checkbox"> Alternative ID (Aadhaar/Passport)</label></li>
+                    <li><label><input type="checkbox"> Voter Information Slip</label></li>
+                </ul>
+            </div>
+        </aside>
+        
+        <!-- FAQ Drawer -->
+        <aside class="drawer" id="faq-drawer">
+            <div class="drawer-header">
+                <h2>Quick FAQs</h2>
+                <button id="close-faq" class="icon-btn">✕</button>
+            </div>
+            <div class="drawer-content" id="faq-list">
+                <!-- FAQs will be injected here -->
+            </div>
+        </aside>
+
+        <main class="chat-viewport" id="chat-viewport">
+            <!-- Messages will be injected here -->
+            <div class="chat-container" id="chat-container">
+                <!-- Greeting message will appear first -->
+            </div>
+        </main>
+
+        <footer class="input-area" id="input-area-container">
+            <div class="search-container" id="search-container" style="display: none;">
+                <input type="text" id="quick-search" placeholder="Search for terms (e.g. EVM, ID, Form 6)...">
+                <div id="search-results" class="search-results"></div>
+            </div>
+            <div id="input-area">
+                <!-- Options/Inputs will be injected here dynamically -->
+            </div>
+            <div class="footer-controls">
+                <button id="search-toggle" class="icon-btn" title="Search">🔍</button>
+                <button id="voice-input-btn" class="icon-btn voice-trigger" title="Voice Input">🎤</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
