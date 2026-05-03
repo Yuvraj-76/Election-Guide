@@ -26,7 +26,7 @@ const searchResults = document.getElementById('search-results');
 
 const CONTENT = {
     greeting: {
-        text: "Namaste! I'm your **Election Guide**. I've been upgraded with new tools to help you prepare for democracy!",
+        text: "Namaste 🙏 I'm here as your **Election Guide**, ready to walk you through voting and help you prepare for participating in democracy. 🗳️",
         question: "Before we dive in, would you like to explore our new **Checklist**, try the **Glossary**, or start a lesson?",
         options: [
             { text: "Start Lessons 📚", value: "basics", next: "main_menu" },
@@ -43,14 +43,39 @@ const CONTENT = {
         ]
     },
     main_menu: {
-        text: "Choose a module to explore. Each one is designed to be quick and interactive.",
+        text: "I've organized everything into simple modules. Where should we start our journey?",
         options: [
-            { text: "1. Voting Day Guide", value: "voting", next: "vote_step1" },
-            { text: "2. Registration (Form 6)", value: "reg", next: "reg_practice" },
-            { text: "3. Efficiency Tips ⏱️", value: "eff", next: "eff_start" },
+            { text: "1. Election Timeline 📅", value: "timeline", next: "timeline_start" },
+            { text: "2. Registration (Form 6) 📝", value: "reg", next: "reg_intro" },
+            { text: "3. Voting Day Guide 🗳️", value: "voting", next: "vote_step1" },
             { text: "4. Myth vs Fact 🛡️", value: "myth", next: "myth_start" },
-            { text: "5. Glossary & Sim", value: "extra", next: "extra_menu" }
+            { text: "5. Glossary & Sim 🎮", value: "extra", next: "extra_menu" }
         ]
+    },
+    timeline_start: {
+        text: "An election isn't just one day! It's a journey with several key milestones.",
+        question: "Would you like to see the **Full Timeline** or focus on **Important Deadlines**?",
+        options: [
+            { text: "Full Timeline 📅", value: "full", next: "timeline_full" },
+            { text: "Deadlines ⏰", value: "deadlines", next: "timeline_deadlines" },
+            { text: "Back to Menu", value: "main", next: "main_menu" }
+        ]
+    },
+    timeline_full: {
+        text: "🚀 **The Life of an Election**:\n\n1. **Notification**: The official start.\n2. **Nominations**: Candidates file their papers.\n3. **Scrutiny**: Checking if candidates are eligible.\n4. **Campaigning**: Parties share their vision.\n5. **Poll Day**: You cast your vote!\n6. **Counting**: Results are announced.",
+        simplified: "It starts with an announcement, follows with candidates signing up, and ends with voting and results.",
+        options: [{ text: "Next: Deadlines", value: "next", next: "timeline_deadlines" }]
+    },
+    timeline_deadlines: {
+        text: "⏰ **Don't Miss Out!**\n\n- **Registration**: You must register at least **10 days before** the last date of nomination in your area.\n- **Search Name**: Always check the electoral roll **2-3 weeks before** polling day.",
+        simplified: "Register early! Don't wait until the week of the election.",
+        quiz: {
+            question: "When is the best time to check if your name is on the voter list?",
+            options: ["On polling day", "2-3 weeks before", "After results"],
+            correct: 1,
+            feedback: "Exactly! Checking early gives you time to fix any issues."
+        },
+        options: [{ text: "Back to Menu", value: "main", next: "main_menu" }]
     },
     extra_menu: {
         text: "More tools to help you master the process.",
@@ -110,9 +135,23 @@ const CONTENT = {
         options: [{ text: "Back to Menu", value: "main", next: "main_menu" }],
         progress: 100
     },
+    reg_intro: {
+        text: "Registration is your entry ticket to democracy! If you are **18 or older**, you can apply using **Form 6**.",
+        question: "Would you like to see the **Document Checklist** or try a **Registration Practice**?",
+        options: [
+            { text: "Document Checklist 📋", value: "docs", next: "reg_docs" },
+            { text: "Practice Form 📝", value: "practice", next: "reg_practice" },
+            { text: "Back to Menu", value: "main", next: "main_menu" }
+        ]
+    },
+    reg_docs: {
+        text: "📑 **What you'll need**:\n\n1. **Passport Size Photo**\n2. **Age Proof** (Aadhaar, Birth Certificate, PAN)\n3. **Address Proof** (Ration Card, Electricity Bill, Water Bill)\n\n*Tip: Digital copies work best for online application!*",
+        simplified: "You need a photo, something with your birth date, and something with your current address.",
+        options: [{ text: "Now Try Practice", value: "practice", next: "reg_practice" }]
+    },
     reg_practice: {
-        text: "The first step to voting is getting your name on the list! You use **Form 6** for this.",
-        question: "Let's try a quick practice. Fill in these details to see how it looks!",
+        text: "Let's try a quick practice. This mimics the official **Form 6** application.",
+        question: "Fill in these details to see how it feels!",
         type: "form",
         fields: [
             { label: "Full Name", placeholder: "e.g. Rahul Sharma" },
@@ -120,9 +159,19 @@ const CONTENT = {
             { label: "Constituency", placeholder: "Your city/area" }
         ],
         options: [
-            { text: "Submit Practice Form", value: "submit", next: "reg_step1" },
-            { text: "Skip to Info", value: "skip", next: "reg_step1" }
+            { text: "Submit Practice Form", value: "submit", next: "reg_complete" },
+            { text: "Back", value: "back", next: "reg_intro" }
         ]
+    },
+    reg_complete: {
+        text: "Great job! Once you submit the real form at **voters.eci.gov.in**, a Booth Level Officer (BLO) will visit you for verification.",
+        quiz: {
+            question: "What is the official website for voter registration in India?",
+            options: ["google.com", "voters.eci.gov.in", "election.in"],
+            correct: 1,
+            feedback: "Correct! Always use the official ECI portal for safety."
+        },
+        options: [{ text: "Back to Menu", value: "main", next: "main_menu" }]
     },
 
     // --- GLOSSARY MODULE ---
@@ -157,14 +206,14 @@ const CONTENT = {
     // --- VOTING DAY GUIDE ---
     vote_step1: {
         title: "Step 1 of 6: Arrival",
-        text: "On election day, you arrive at your assigned polling station. This is usually a public building like a school.",
-        simplified: "You go to your local school or community center where people are voting.",
+        text: "On election day, you arrive at your assigned polling station. This is usually a public building like a school. You can find yours on the **Voter Helpline App**.",
+        simplified: "Go to your local school or community center where people are voting. Use an app to find the exact room.",
         example: "Think of it like going to a bank, but with volunteers helping you find your way.",
         quiz: {
-            question: "Is your polling station always the same for every election?",
-            options: ["Yes, always", "No, it depends on your area"],
+            question: "What is the primary document you should carry to the polling station?",
+            options: ["Library Card", "Voter ID (EPIC)", "Gym Membership"],
             correct: 1,
-            feedback: "Correct! It depends on your current residence and the constituency boundaries."
+            feedback: "Correct! EPIC is your ticket to vote, but Aadhaar also works!"
         },
         options: [
             { text: "Next: Identification", value: "next", next: "vote_step2" },
@@ -236,64 +285,64 @@ const CONTENT = {
     // --- SIMULATION MODE ---
     sim_start: {
         type: "scenario",
-        text: "🚀 **Scenario Simulation**\n\nYou've reached the Polling Station. There's a queue of people.",
-        question: "What is the first thing you should check?",
+        text: "🚀 **Voting Day Simulation**\n\nYou've reached the Polling Station. It's crowded! A volunteer asks for your slip.",
+        question: "What if you don't have a physical slip?",
         options: [
-            { text: "Is my name on the list outside?", value: "list", next: "sim_2" },
-            { text: "Where are the snacks?", value: "snacks", next: "sim_snacks" }
+            { text: "Show Digital Slip on Phone", value: "digital", next: "sim_2" },
+            { text: "Go home and cry", value: "cry", next: "sim_cry" }
         ],
         progress: 10
     },
-    sim_snacks: {
-        text: "Haha! Maybe later. focus! Snacks aren't allowed inside.",
+    sim_cry: {
+        text: "No need for tears! You can get a duplicate slip from the volunteers outside. Let's try again.",
         next_auto: "sim_start"
     },
     sim_2: {
         type: "scenario",
-        text: "You find your name! You enter the room. Three officials are sitting at a desk.",
-        question: "Who do you go to first?",
+        text: "You're inside! The First Official is checking the list. They can't find your name.",
+        question: "What's the best action?",
         options: [
-            { text: "The person checking IDs", value: "id", next: "sim_3" },
-            { text: "The person with the ink", value: "ink", next: "sim_wrong_order" }
+            { text: "Double check my EPIC number", value: "epic", next: "sim_3" },
+            { text: "Argue with the official", value: "argue", next: "sim_argue" }
         ],
         progress: 30
     },
-    sim_wrong_order: {
-        text: "Wait! You must be identified first.",
+    sim_argue: {
+        text: "Arguing won't help. Officials are there to help! Let's be polite and check the EPIC number.",
         next_auto: "sim_2"
     },
     sim_3: {
         type: "scenario",
-        text: "Identity verified! Now the second official is ready. Which finger do you hold out?",
+        text: "Success! Name found. Now, the Ink official is ready. They ask for your left hand.",
         options: [
-            { text: "Left Forefinger", value: "left", next: "sim_4" },
-            { text: "Right Thumb", value: "right", next: "sim_wrong_finger" }
+            { text: "Hold out Left Forefinger", value: "left", next: "sim_4" },
+            { text: "Give a high-five", value: "five", next: "sim_wrong_finger" }
         ],
         progress: 50
     },
     sim_wrong_finger: {
-        text: "In India, it's the **Left Forefinger**.",
+        text: "Haha! Save the high-fives for after you vote. **Left Forefinger** please!",
         next_auto: "sim_3"
     },
     sim_4: {
         type: "scenario",
-        text: "Inked and ready! You step into the voting booth.",
-        question: "You want to vote for the 'Lantern' symbol. What do you do?",
+        text: "Inked and ready! You enter the private booth. You see the EVM buttons.",
+        question: "You want to vote for your favorite candidate. What do you do?",
         options: [
-            { text: "Press the blue button next to it", value: "press", next: "sim_5" },
-            { text: "Sign the machine", value: "sign", next: "sim_fail" }
+            { text: "Press the blue button once", value: "press", next: "sim_5" },
+            { text: "Try to press multiple buttons", value: "multi", next: "sim_fail" }
         ],
         progress: 80
     },
     sim_fail: {
-        text: "No! Just press the button.",
+        text: "The machine only accepts one vote! Just press the blue button next to your choice.",
         next_auto: "sim_4"
     },
     sim_5: {
         type: "scenario",
-        text: "*BEEEP!* You see your choice on the VVPAT window.",
-        question: "Simulation Complete! Proud of you.",
-        options: [{ text: "Back to Menu", value: "main", next: "main_menu" }],
+        text: "*BEEEP!* The VVPAT shows your choice for 7 seconds. You're done!",
+        question: "How do you feel about your first simulated vote?",
+        options: [{ text: "Proud & Ready! 🇮🇳", value: "main", next: "main_menu" }],
         progress: 100
     }
 };
@@ -455,12 +504,13 @@ async function renderState(stateKey, isControl = false) {
     chatContainer.appendChild(msgDiv);
     scrollChat();
 
-    // Natural word-by-word reveal
+    // Natural word-by-word reveal (Optimized)
     const words = textToDisplay.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').split(' ');
-    for (let word of words) {
-        p.innerHTML += word + ' ';
-        await sleep(30);
-        scrollChat();
+    for (let i = 0; i < words.length; i++) {
+        p.innerHTML += words[i] + ' ';
+        // Only scroll every 3 words or at the end to save performance
+        if (i % 3 === 0 || i === words.length - 1) scrollChat();
+        await sleep(25);
     }
 
     if (state.question && !isControl) {
@@ -661,7 +711,13 @@ function showTyping() {
 }
 
 function removeTyping(id) { const el = document.getElementById(id); if (el) el.remove(); }
-function scrollChat() { chatViewport.scrollTo({ top: chatViewport.scrollHeight, behavior: 'smooth' }); }
+function scrollChat() { 
+    // Use 'auto' behavior for better performance during rapid updates
+    chatViewport.scrollTo({ 
+        top: chatViewport.scrollHeight, 
+        behavior: chatViewport.scrollHeight - chatViewport.scrollTop > 500 ? 'auto' : 'smooth' 
+    }); 
+}
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
 init();
