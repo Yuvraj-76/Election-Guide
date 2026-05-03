@@ -3,100 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Election Guide | Your Interactive Civic Tutor</title>
-    <meta name="description" content="Learn about the election process with Election Guide, your friendly interactive AI assistant for civic education.">
+    <title>Election Guide Pro | India's #1 Civic Learning Platform</title>
+    <meta name="description" content="Master the Indian election process with our interactive AI assistant, visual timelines, and comprehensive voter guides.">
     
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="Election Guide Pro">
+    <meta property="og:description" content="Your interactive path to becoming an informed voter.">
+    <meta name="theme-color" content="#6366f1">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Confetti Library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Background elements for visual depth -->
-        <div class="bg-blur blur-1"></div>
-        <div class="bg-blur blur-2"></div>
-        
-        <header class="app-header">
-            <div class="logo">
-                <div class="mascot-container" id="mascot">
-                    <div class="mascot-eye left"></div>
-                    <div class="mascot-eye right"></div>
-                    <div class="mascot-mouth"></div>
-                </div>
-                <h1>Election Guide</h1>
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assistant_avatar.png" alt="Logo" class="nav-avatar">
+                <span>Election Guide Pro</span>
             </div>
-            <div class="header-actions">
-                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">🌓</button>
-                <button id="faq-btn" class="icon-btn" title="Quick FAQs">❓</button>
-                <button id="checklist-btn" class="icon-btn" title="My Checklist">📋</button>
-                <div class="progress-container">
-                    <div class="progress-text" id="progress-text">Ready to start</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#assistant">AI Assistant</a></li>
+                <li><a href="#features">Tools</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#assistant" class="nav-cta">Start Learning</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="background-canvas">
+        <div class="blob"></div>
+        <div class="blob" style="top: 60%; left: 70%; animation-delay: -5s;"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <span class="hero-badge">Empowering 1 Billion Voters 🇮🇳</span>
+            <h1>Master Your Vote, <br><span class="gradient-text">Shape the Future.</span></h1>
+            <p>The most interactive way to understand the Indian election process, from registration to the polling booth.</p>
+            <div class="hero-btns">
+                <a href="#assistant" class="btn primary lg">Talk to Assistant <i class="fas fa-robot"></i></a>
+                <a href="#features" class="btn secondary lg">Explore Tools</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-mascot">
+                <img src="assistant_avatar.png" alt="Mascot">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <h2>Powerful Tools for Every Voter</h2>
+            <p>Everything you need to navigate the democratic process in one place.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-circle"><i class="fas fa-calendar-check"></i></div>
+                <h3>Visual Timeline</h3>
+                <p>Track every milestone from the official notification to the final counting day.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-circle"><i class="fas fa-id-card"></i></div>
+                <h3>Registration Guide</h3>
+                <p>Step-by-step instructions for Form 6 and finding your name in the electoral roll.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-circle"><i class="fas fa-shield-alt"></i></div>
+                <h3>Myth Buster</h3>
+                <p>Verify facts and debunk common misinformation about EVMs and voting rights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-circle"><i class="fas fa-gamepad"></i></div>
+                <h3>Live Simulation</h3>
+                <p>Experience the polling station virtually before you head out on election day.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Assistant Section -->
+    <section id="assistant" class="assistant-section">
+        <div class="app-container">
+            <aside class="app-sidebar">
+                <div class="sidebar-header">
+                    <div class="avatar-container">
+                        <img src="assistant_avatar.png" alt="Assistant Avatar" class="avatar-img">
+                    </div>
+                    <div class="brand-info">
+                        <h2>Guide AI</h2>
+                        <span class="status"><i class="fas fa-circle"></i> Online</span>
                     </div>
                 </div>
-            </div>
-        </header>
+                <div class="sidebar-tools">
+                    <div id="countdown-timer" class="countdown-widget">
+                        <p>Days to Election</p>
+                        <div id="timer-display">Loading...</div>
+                    </div>
+                </div>
+                <nav class="sidebar-nav">
+                    <ul class="nav-links-sidebar">
+                        <li class="nav-item-s active" data-tool="chat"><i class="fas fa-comment-dots"></i> Chat</li>
+                        <li class="nav-item-s" data-tool="checklist"><i class="fas fa-tasks"></i> Checklist</li>
+                        <li class="nav-item-s" data-tool="faq"><i class="fas fa-question-circle"></i> FAQ</li>
+                    </ul>
+                </nav>
+            </aside>
 
-        <!-- New: Checklist Drawer -->
-        <aside class="drawer" id="checklist-drawer">
-            <div class="drawer-header">
-                <h2>Voting Checklist</h2>
-                <button id="close-drawer" class="icon-btn">✕</button>
-            </div>
-            <div class="drawer-content">
-                <p class="drawer-hint">Prepare these for election day:</p>
-                <ul class="checklist" id="voting-checklist">
-                    <li><label><input type="checkbox"> EPIC (Voter ID Card)</label></li>
-                    <li><label><input type="checkbox"> Check Polling Station Location</label></li>
-                    <li><label><input type="checkbox"> Verified Name in Electoral Roll</label></li>
-                    <li><label><input type="checkbox"> Alternative ID (Aadhaar/Passport)</label></li>
-                    <li><label><input type="checkbox"> Voter Information Slip</label></li>
+            <main class="main-content">
+                <header class="app-header">
+                    <div class="progress-section">
+                        <div class="progress-label">
+                            <span>Topic Mastery</span>
+                            <span id="progress-percent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="chat-viewport" id="chat-viewport">
+                    <div id="chat-messages">
+                        <!-- Messages injected here -->
+                    </div>
+                </div>
+
+                <footer class="app-footer">
+                    <div id="action-options" class="options-container">
+                        <!-- Buttons injected here -->
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Why Every Vote Matters</h2>
+                <p>Democracy is built on the participation of its citizens. In India, with over 900 million voters, your single vote is a powerful tool for change.</p>
+                <ul class="bullet-list">
+                    <li><i class="fas fa-check-circle"></i> Choose representatives who share your values.</li>
+                    <li><i class="fas fa-check-circle"></i> Participate in the world's largest democratic exercise.</li>
+                    <li><i class="fas fa-check-circle"></i> Ensure accountability in governance.</li>
                 </ul>
             </div>
-        </aside>
-        
-        <!-- FAQ Drawer -->
-        <aside class="drawer" id="faq-drawer">
-            <div class="drawer-header">
-                <h2>Quick FAQs</h2>
-                <button id="close-faq" class="icon-btn">✕</button>
+            <div class="about-visual">
+                <div class="stat-card">
+                    <h3>900M+</h3>
+                    <p>Eligible Voters</p>
+                </div>
+                <div class="stat-card">
+                    <h3>1M+</h3>
+                    <p>Polling Booths</p>
+                </div>
             </div>
-            <div class="drawer-content" id="faq-list">
-                <!-- FAQs will be injected here -->
-            </div>
-        </aside>
+        </div>
+    </section>
 
-        <main class="chat-viewport" id="chat-viewport">
-            <!-- Messages will be injected here -->
-            <div class="chat-container" id="chat-container">
-                <!-- Greeting message will appear first -->
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Election Guide Pro</h3>
+                <p>Educating and empowering the voters of India.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
-        </main>
-
-        <footer class="input-area" id="input-area-container">
-            <div class="search-container" id="search-container" style="display: none;">
-                <input type="text" id="quick-search" placeholder="Search for terms (e.g. EVM, ID, Form 6)...">
-                <div id="search-results" class="search-results"></div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#assistant">Assistant</a></li>
+                    <li><a href="#features">Tools</a></li>
+                    <li><a href="https://voters.eci.gov.in" target="_blank">Official ECI Portal</a></li>
+                </ul>
             </div>
-            <div id="input-area">
-                <!-- Options/Inputs will be injected here dynamically -->
+            <div class="footer-contact">
+                <h4>Stay Informed</h4>
+                <p>Sign up for election reminders.</p>
+                <form class="footer-form">
+                    <input type="email" placeholder="Email address">
+                    <button type="submit">Join</button>
+                </form>
             </div>
-            <div class="footer-controls">
-                <button id="search-toggle" class="icon-btn" title="Search">🔍</button>
-                <button id="voice-input-btn" class="icon-btn voice-trigger" title="Voice Input">🎤</button>
-            </div>
-        </footer>
-    </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Election Guide Pro. Not an official ECI website.</p>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="script.js"></script>
+    <script src="features.js"></script>
 </body>
 </html>
